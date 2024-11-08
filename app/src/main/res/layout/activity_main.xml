@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="120dp"
+        android:text="Bienvenido: "
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_usuario"
+        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="24dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_contrasena"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_contrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="48dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="415dp"
+        android:layout_height="62dp"
+        android:background="@color/verdeOliva"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-8dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:paddingRight="110dp"
+                android:text="Bolos Lucentinos"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/bolos_lucentinos" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:paddingTop="20dp"
+                android:text="Los bolos lucentinos son una receta típica en esta
+ciudad del sur de Córdoba, que consiste\n en una mezcla entre carne picada y almendras
+que se ha transmitido a traves de generaciones de familias. Una comida que se suele servir
+salsa o sola." />
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.665"
+        tools:layout_editor_absoluteX="-1dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="212dp">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:paddingRight="150dp"
+                android:text="Pestiños"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/tirabuzones" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:paddingTop="20dp"
+                android:text="Los pestiños es un dulce típico de la gastronomia lucentina donde
+se ha ido transmitiendo de generacion en generacion. Se suele hacer en la época de la semana santa
+evento cultural que en Lucena tiene un reconocimiento especial debido a que es de los pocos lugares
+con solo santería" />
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
