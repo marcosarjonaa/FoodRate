@@ -8,7 +8,8 @@ import com.example.foodrate.models.Recetas
 
 class ViewHRecetas (
     view: View,
-    var deleteOnClick: (Int) -> Unit
+    var deleteOnClick: (Int) -> Unit,
+    var updateOnClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder (view){
     var binding: ActivityCardviewBinding
 
@@ -31,6 +32,9 @@ class ViewHRecetas (
     private fun setOnClickListener(position : Int) {
         binding.ivDelete.setOnClickListener {
             deleteOnClick(position)
+        }
+        binding.ivEdit.setOnClickListener {
+            updateOnClick(position)
         }
     }
 }
