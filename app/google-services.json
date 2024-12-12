@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784022530766",
+    "project_id": "ejemplo-c1058",
+    "storage_bucket": "ejemplo-c1058.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784022530766:android:c5f585c77d2ea390b8fe9f",
+        "android_client_info": {
+          "package_name": "com.example.foodrate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs8UIKPZBxv787Y98r65SJGd2Gec0xFnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
