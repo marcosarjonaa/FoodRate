@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width ="match_parent"
     android:layout_height ="match_parent"
+    android:background="@drawable/fondo2"
     tools:context =".MainActivity" >
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,16 @@
 
     <ImageButton
         android:id="@+id/btn_add"
-        android:layout_width="47dp"
+        android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="right"
         android:src="@android:drawable/ic_input_add" />
+
+    <ImageButton
+        android:id="@+id/btn_logout"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom|right"
+        android:src="@android:drawable/ic_media_rew" />
+
 </FrameLayout >
