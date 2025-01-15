@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="Inicio"
+            android:id="@+id/fragmentInicio"
+            />
+        <item android:title="Recetas"
+            android:id="@+id/fragmentComidas"
+            />
+        <item android:title="Restaurantes"
+            android:id="@+id/fragmentRestaurantes"/>
+        <item android:title="Configuración"
+            android:id="@+id/fragmentConfiguration"/>
+        <item
+            android:id="@+id/login"
+            android:title="Logout" />
+    </group>
+</menu>

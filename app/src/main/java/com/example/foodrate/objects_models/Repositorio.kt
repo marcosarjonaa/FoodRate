@@ -6,6 +6,7 @@ object Repositorio {
     val ListaRecetas : List<Recetas> = listOf(
         Recetas(
             "Bolos lucentinos",
+            "0",
             "Los bolos lucentinos son una comida que ha pasado generación tras generacion" +
                     " de abuelas a madres. Típica de Lucena, es un plato que une la carne y las almendras.",
             "8",
@@ -13,6 +14,7 @@ object Repositorio {
         ),
         Recetas(
             "Tirabuzones",
+            "1",
             "Los tirabuzones son una comida típica de la semana santa, sobretodo en lucena donde cada vez es menos visto," +
                     "haciendo que esta receta se encuentre más perdida.",
             "7",
@@ -20,6 +22,7 @@ object Repositorio {
         ),
         Recetas(
             "Flamenquín",
+            "2",
             "Los flamenquines son una comida típica cordobesa que se ha extendido a toda españa." +
                     " Aunque la receta original es con lomo y jamón se puede...",
             "9",
@@ -27,6 +30,7 @@ object Repositorio {
         ),
         Recetas(
             "Salmorejo",
+            "3",
             "El salmorejo es una comida típica cordobesa cuya base es una mezcla de tomate con otras verduras" +
                     ", tambien se le suele echar huevo duro y jamón",
             "7",
@@ -34,13 +38,15 @@ object Repositorio {
         ),
         Recetas(
             "Ochios",
+            "4",
             "Los ochios son un plato común de la provincia de Jaén, originario de Úbeda y Baeza. " +
                     "Se suele comer rellenos de morcilla o pavo en su mayoria, pero tambien hay variantes dulces.",
             "8",
             "https://www.vandelviraturismo.com/wp-content/uploads/2020/09/ochios-en-baeza-comida-tipica-768x576.jpg"
         ),
         Recetas(
-            "Spaghetti a la ...",
+            "Spaghetti Carbonara",
+            "5",
             "Receta italiana que se ha expandido por todo el mundo, sus ingredientes consisten en spaghetti, guanciale, peccorino, pimienta negra" +
                     ". A la carbonara, viene por dos teorías , porque...",
             "9",
@@ -48,6 +54,7 @@ object Repositorio {
         ),
         Recetas(
             "Pizza margharitta",
+            "6",
             "La pizza margharitta viene por la visita de la reina italiana Margarita a napoles, donde buscando honorificar la " +
                     "bandera italiana , buscaron la forma de hacer una pizza con los colores de la bandera.",
             "10",
@@ -55,6 +62,7 @@ object Repositorio {
         ),
         Recetas(
             "Tortilla de patatas",
+            "7",
             "La tortilla de patatas, es una receta con origen español que mezcla las patatas con el huevo, aunque existe el debate" +
                     "de si va acompañada de cebolla o no...",
             "10",
@@ -62,6 +70,7 @@ object Repositorio {
         ),
         Recetas(
             "Patatas bravas",
+            "8",
             "Las patatas bravas tienen su origen en Madrid, no es certero donde se vendieron las primeras. Es una tapa " +
                     "típicas de España. Donde , sobre todo, en bares se suelen comer",
             "7",
@@ -69,10 +78,18 @@ object Repositorio {
         ),
         Recetas(
             "Rabo de toro",
+            "9",
             "El rabo de toro es una comida tipica cordobesa aunque cada vez mas extendida por España. Esta comida suele servirse sobre un caldo de verduras" +
                     " donde resalta la zanahoria y con un parmentier de  patata",
             "7",
             "https://cdn.tasteatlas.com/images/dishes/5d1064ee4af349a4b9a72993acc6e993.jpg"
         ),
+        Recetas(
+            "",
+            "11",
+            "",
+            "",
+            ""
+        )
     )
 }

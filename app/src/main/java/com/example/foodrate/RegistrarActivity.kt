@@ -47,7 +47,7 @@ class RegistrarActivity : AppCompatActivity() {
         editPassword = findViewById(R.id.edit_pass_register)
         editRepeatPassword = findViewById(R.id.pass_register_repeat_in_register)
 
-        auth = Firebase.auth  //Creamos nuestro objeto de autenticación
+        auth = Firebase.auth
 
     }
 

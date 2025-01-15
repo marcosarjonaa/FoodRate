@@ -14,12 +14,14 @@ class DialogEditRecetas (
     val updateRecetasDialog: (Recetas) -> Unit
 ) : DialogFragment() {
     private val ARGUMENT_NAME : String = ArgumentsRecetas.ARGUMENT_NAME
+    private val ARGUMENT_ID : String = ArgumentsRecetas.ARGUMENT_ID
     private val ARGUMENT_DESCRIPCION : String = ArgumentsRecetas.ARGUMENT_DESCRIPCION
     private val ARGUMENT_NOTA : String = ArgumentsRecetas.ARGUMENT_NOTA
     private val ARGUMENT_IMAGE : String = ArgumentsRecetas.ARGUMENT_IMAGE
     init{
         val args = Bundle().apply {
             putString(ARGUMENT_NAME, recetasToUpdate.name)
+            putString(ARGUMENT_ID, recetasToUpdate.id)
             putString(ARGUMENT_DESCRIPCION, recetasToUpdate.descripcion)
             putString(ARGUMENT_NOTA, recetasToUpdate.nota)
             putString(ARGUMENT_IMAGE, recetasToUpdate.image)
@@ -33,17 +35,19 @@ class DialogEditRecetas (
             val binding = DialogEditRecetasBinding.inflate(inflater)
             arguments?.let { args ->  // seteo los datos iniciales en los campos del dialogo
                 binding.etName.setText(args.getString(ARGUMENT_NAME))
+                binding.etId.setText(args.getString(ARGUMENT_ID))
                 binding.etdescripcion.setText(args.getString(ARGUMENT_DESCRIPCION))
                 binding.etNota.setText(args.getString(ARGUMENT_NOTA))
                 binding.etImage.setText(args.getString(ARGUMENT_IMAGE))
             }
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(binding.root)
-                .setTitle("Editar monumento: ")
+                .setTitle("Editar receta: ")
                 .setPositiveButton("Aceptar") { dialog, id ->
                     val updateRecetas = recoverDataLayout(binding)
 
                     if (updateRecetas.name.isEmpty() ||
+                        updateRecetas.id.isEmpty() ||
                         updateRecetas.descripcion.isEmpty() ||
                         updateRecetas.nota.isEmpty() ||
                         updateRecetas.image.isEmpty()
@@ -65,8 +69,9 @@ class DialogEditRecetas (
     private fun recoverDataLayout(binding: DialogEditRecetasBinding): Recetas {
         return Recetas(
             binding.etName.text.toString(),
-            binding.etNota.text.toString(),
+            binding.etId.id.toString(),
             binding.etdescripcion.text.toString(),
+            binding.etNota.text.toString(),
             binding.etImage.text.toString()
         )
     }

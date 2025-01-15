@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentInicio">
+
+    <fragment
+        android:id="@+id/fragmentComidas"
+        android:name="com.example.foodrate.FragmentComidas"
+        android:label="fragment_comidas"
+        tools:layout="@layout/fragment_comidas">
+        <action
+            android:id="@+id/action_fragmentComidas_to_fragmentDetalles"
+            app:destination="@id/fragmentDetalles" >
+            <argument
+                android:name="idItem"
+                app:argType="integer" />
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentConfiguration"
+        android:name="com.example.foodrate.FragmentConfiguration"
+        android:label="Configuracion"
+        tools:layout="@layout/fragment_configuration" />
+    <fragment
+        android:id="@+id/fragmentDetalles"
+        android:name="com.example.foodrate.FragmentDetalles"
+        android:label="Detalles"
+        tools:layout="@layout/fragment_detalles" >
+        <argument
+            android:name="idItem"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInicio"
+        android:name="com.example.foodrate.FragmentInicio"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <activity
+        android:id="@+id/main"
+        android:name="com.example.foodrate.MainActivity"
+        android:label="Main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/registrarActivity"
+        android:name="com.example.foodrate.RegistrarActivity"
+        android:label="Registrar"
+        tools:layout="@layout/activity_registrar" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.foodrate.LoginActivity"
+        android:label="Login"
+        tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/fragmentRestaurantes"
+        android:name="com.example.foodrate.FragmentRestaurantes"
+        android:label="fragmentRestaurantes"
+        tools:layout="@layout/fragment_restaurantes" />
+</navigation>

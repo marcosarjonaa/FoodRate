@@ -44,6 +44,7 @@ class DialogAddRecetas (
 
     private fun validacion(receta: Recetas): Boolean {
         return receta.name.isNotEmpty() &&
+                receta.id.toString().isNotEmpty() &&
                 receta.descripcion.isNotEmpty() &&
                 receta.nota.isNotEmpty() &&
                 receta.image.isNotEmpty()
@@ -53,6 +54,7 @@ class DialogAddRecetas (
         val binding = DialogAddRecetasBinding.bind(view)
         return Recetas(
             binding.etName.text.toString(),
+            binding.etId.text.toString(),
             binding.etDescripcion.text.toString(),
             binding.etNota.text.toString(),
             binding.etImage.text.toString()

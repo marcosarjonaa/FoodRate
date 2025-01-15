@@ -1,31 +1,31 @@
-<?xml version ="1.0" encoding ="utf-8" ?>
-<FrameLayout
+<?xml version ="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width ="match_parent"
     android:layout_height ="match_parent"
-    android:background="@drawable/fondo2"
-    tools:context =".MainActivity" >
+    tools:context=".MainActivity" >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="348dp"
-        android:layout_height="849dp"
-        android:padding="25dp" />
+    <include
+        android:id="@+id/appBarConfiguration"
+        layout="@layout/app_bar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/btn_add"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_gravity="right"
-        android:src="@android:drawable/ic_input_add" />
-
-    <ImageButton
-        android:id="@+id/btn_logout"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom|right"
-        android:src="@android:drawable/ic_media_rew" />
-
-</FrameLayout >
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/my_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:itemHorizontalPadding="16dp"
+        android:fitsSystemWindows="true"
+        android:layout_marginTop="30dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        app:itemIconTint="#030A1D"
+        app:itemTextColor="#1B313E"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu_extend" />
+</androidx.drawerlayout.widget.DrawerLayout>

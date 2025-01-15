@@ -1,0 +1,15 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragmentInicio"
+        android:title="Inicio"/>
+
+    <item
+        android:id="@+id/fragmentConfiguration"
+        android:title="Configuración"/>
+
+    <item
+        android:id="@+id/login"
+        android:title="Log Out"/>
+</menu>

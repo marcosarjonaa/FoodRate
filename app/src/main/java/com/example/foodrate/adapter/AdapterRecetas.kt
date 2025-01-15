@@ -9,12 +9,13 @@ import com.example.foodrate.models.Recetas
 class AdapterRecetas(
     var listRecetas: MutableList<Recetas>,
     var deleteClick: (Int) -> Unit,
-    var updateClick: (Int) -> Unit
+    var updateClick: (Int) -> Unit,
+    var itemClick: (Int) -> Unit
     ) : RecyclerView.Adapter<ViewHRecetas>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHRecetas {
             val layoutInflater = LayoutInflater.from(parent.context)
             val layoutItemRecetas = R.layout.activity_cardview
-            return ViewHRecetas(layoutInflater.inflate(layoutItemRecetas, parent, false), deleteClick, updateClick)
+            return ViewHRecetas(layoutInflater.inflate(layoutItemRecetas, parent, false), deleteClick, updateClick, itemClick)
         }
 
         override fun onBindViewHolder(holder: ViewHRecetas, position: Int) {
