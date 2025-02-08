@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentComidas"
-        android:name="com.example.foodrate.FragmentComidas"
+        android:name="com.example.foodrate.ui.views.fragment.comidas.FragmentComidas"
         android:label="fragment_comidas"
         tools:layout="@layout/fragment_comidas">
         <action
@@ -21,12 +21,12 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentConfiguration"
-        android:name="com.example.foodrate.FragmentConfiguration"
+        android:name="com.example.foodrate.ui.views.fragment.configuration.FragmentConfiguration"
         android:label="Configuracion"
         tools:layout="@layout/fragment_configuration" />
     <fragment
         android:id="@+id/fragmentDetalles"
-        android:name="com.example.foodrate.FragmentDetalles"
+        android:name="com.example.foodrate.ui.views.fragment.detalles.FragmentDetalles"
         android:label="Detalles"
         tools:layout="@layout/fragment_detalles" >
         <argument
@@ -35,27 +35,27 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentInicio"
-        android:name="com.example.foodrate.FragmentInicio"
+        android:name="com.example.foodrate.ui.views.fragment.inicio.FragmentInicio"
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
     <activity
         android:id="@+id/main"
-        android:name="com.example.foodrate.MainActivity"
+        android:name="com.example.foodrate.ui.views.activities.main.MainActivity"
         android:label="Main"
         tools:layout="@layout/activity_main" />
     <activity
         android:id="@+id/registrarActivity"
-        android:name="com.example.foodrate.RegistrarActivity"
+        android:name="com.example.foodrate.ui.views.activities.registrar.RegistrarActivity"
         android:label="Registrar"
         tools:layout="@layout/activity_registrar" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.foodrate.LoginActivity"
+        android:name="com.example.foodrate.ui.views.activities.login.LoginActivity"
         android:label="Login"
         tools:layout="@layout/activity_login" />
     <fragment
         android:id="@+id/fragmentRestaurantes"
-        android:name="com.example.foodrate.FragmentRestaurantes"
+        android:name="com.example.foodrate.ui.views.fragment.Restaurantes.FragmentRestaurantes"
         android:label="fragmentRestaurantes"
         tools:layout="@layout/fragment_restaurantes" />
 </navigation>

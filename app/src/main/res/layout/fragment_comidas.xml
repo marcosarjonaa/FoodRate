@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo2"
     android:id="@+id/fragmentComidas"
-    tools:context=".FragmentComidas">
+    tools:context=".ui.views.fragment.comidas.FragmentComidas">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
