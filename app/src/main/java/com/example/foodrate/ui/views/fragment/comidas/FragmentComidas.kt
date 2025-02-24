@@ -90,6 +90,9 @@ class FragmentComidas() : Fragment() {
             val dialogo = DialogDeleteRecetas(posicion){
                 recetasViewModel.deleteReceta(posicion.toString())
             }
+            dialogo.show(requireActivity().supportFragmentManager, "Queremos eliminar")
+        }else {
+            Toast.makeText(context, "No se puede eliminar", Toast.LENGTH_SHORT).show()
         }
     }
 

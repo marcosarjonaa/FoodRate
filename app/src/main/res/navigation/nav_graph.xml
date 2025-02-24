@@ -56,6 +56,6 @@
     <fragment
         android:id="@+id/fragmentRestaurantes"
         android:name="com.example.foodrate.ui.views.fragment.Restaurantes.FragmentRestaurantes"
-        android:label="fragmentRestaurantes"
+        android:label="Restaurantes "
         tools:layout="@layout/fragment_restaurantes" />
 </navigation>

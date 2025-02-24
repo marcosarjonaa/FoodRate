@@ -110,6 +110,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logout() {
+        /*FirebaseAuth.getInstance().signOut()
+
+        getSharedPreferences("session", MODE_PRIVATE)
+            .edit()
+            .putBoolean("is_logged_in", false)
+            .apply()
+        navController.popBackStack(R.id.)*/
         auth.signOut()
         val loginIntent = Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

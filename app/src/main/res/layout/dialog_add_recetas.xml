@@ -8,12 +8,12 @@
 
     <LinearLayout
         android:layout_width="313dp"
-        android:layout_height="224dp"
+        android:layout_height="450dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="294dp"
-            android:layout_height="219dp"
+            android:layout_height="500dp"
             android:orientation="horizontal"
             android:paddingBottom="8dp"
             android:weightSum="5">
@@ -57,15 +57,28 @@
                     android:text="Descripcion: "
                     android:textSize="14sp" />
 
-
-                <EditText
+                <ImageView
                     android:id="@+id/etImage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="7dp"
-                    android:text="Imagen: (url)"
-                    android:textSize="14sp" />
+                    android:layout_height="150dp"
+                    android:background="@android:color/darker_gray"
+                    android:scaleType="centerCrop" />
 
+                <Button
+                    android:id="@+id/btnSelectImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seleccionar Imagen" />
+                <Button
+                    android:id="@+id/btnTakePhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tomar Foto"/>
+                <Button
+                    android:id="@+id/btnSaveToGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Guardar en Galería"/>
 
             </LinearLayout>
         </LinearLayout>

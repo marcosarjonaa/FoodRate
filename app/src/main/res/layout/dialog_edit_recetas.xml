@@ -5,18 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.fragment.comidas.dialogues.DialogEditRecetas">
 
-
     <LinearLayout
-        android:layout_width="307dp"
-        android:layout_height="264dp"
+        android:layout_width="330dp"
+        android:layout_height="450dp"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:weightSum="5">
 
-
         <LinearLayout
-            android:layout_width="261dp"
-            android:layout_height="258dp"
+            android:layout_width="300dp"
+            android:layout_height="450dp"
             android:layout_weight="2.7"
             android:orientation="vertical"
             android:padding="4dp">
@@ -25,45 +23,58 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Nombre"
                 android:paddingBottom="7dp"
-                android:text="Nombre: "
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/etId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Id"
                 android:paddingBottom="7dp"
-                android:text="Id: "
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etNota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Nota"
                 android:paddingBottom="7dp"
-                android:text="Nota: "
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etdescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Descripción"
                 android:paddingBottom="7dp"
-                android:text="Descripción: "
                 android:textSize="14sp" />
 
 
-            <EditText
+            <ImageView
                 android:id="@+id/etImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="7dp"
-                android:text="Imagen: (URL)"
-                android:textSize="14sp" />
+                android:layout_height="150dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop" />
 
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seleccionar Imagen" />
+            <Button
+                android:id="@+id/btnTakePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tomar Foto"/>
+            <Button
+                android:id="@+id/btnSaveToGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar en Galería"/>
 
         </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

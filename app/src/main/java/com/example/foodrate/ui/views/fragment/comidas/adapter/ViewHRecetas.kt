@@ -8,8 +8,8 @@ import com.example.foodrate.domain.models.recetas.Recetas
 
 class ViewHRecetas (
     view: View,
-    var deleteOnClick: (Int) -> Unit,
     var updateOnClick: (Int) -> Unit,
+    var deleteOnClick: (Int) -> Unit,
     var itemClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder (view){
     var binding: ActivityCardviewBinding

@@ -49,7 +49,7 @@
                 android:id="@+id/iv_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="170dp"
+                android:layout_marginLeft="190dp"
                 android:layout_gravity="bottom"
                 app:srcCompat="@android:drawable/ic_menu_delete" />
 
