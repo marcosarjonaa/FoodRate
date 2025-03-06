@@ -1,4 +1,4 @@
-package com.example.foodrate.data.datasource.restaurantes
+package com.example.foodrate.data.recetas.datasource.restaurantes
 
 import com.example.foodrate.domain.models.restaurantes.Restaurantes
 

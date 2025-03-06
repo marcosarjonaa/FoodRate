@@ -1,7 +1,7 @@
-package com.example.foodrate.data.repository
+package com.example.foodrate.data.recetas.repository
 
 import androidx.room.util.copy
-import com.example.foodrate.data.datasource.recetas.Repositorio
+import com.example.foodrate.data.recetas.datasource.recetas.Repositorio
 import com.example.foodrate.domain.interfaces.InterfaceDao
 import com.example.foodrate.domain.models.recetas.Recetas
 import com.example.foodrate.domain.models.recetas.RecetasData
