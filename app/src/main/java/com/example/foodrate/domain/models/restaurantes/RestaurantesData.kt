@@ -1,6 +1,6 @@
 package com.example.foodrate.domain.models.restaurantes
 
-import com.example.foodrate.data.datasource.restaurantes.RestaurantesLista
+import com.example.foodrate.data.recetas.datasource.restaurantes.RestaurantesLista
 
 class RestaurantesData {
     companion object{

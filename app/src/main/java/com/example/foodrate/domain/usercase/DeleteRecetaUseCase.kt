@@ -1,6 +1,6 @@
 package com.example.foodrate.domain.usercase
 
-import com.example.foodrate.data.repository.RecetasRepository
+import com.example.foodrate.data.recetas.repository.RecetasRepository
 import javax.inject.Inject
 
 class DeleteRecetaUseCase @Inject constructor(

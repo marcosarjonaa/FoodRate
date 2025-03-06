@@ -1,6 +1,6 @@
 package com.example.foodrate.ui.views.fragment.detalles
 
-import com.example.foodrate.data.datasource.recetas.Repositorio
+import com.example.foodrate.data.recetas.datasource.recetas.Repositorio
 import com.example.foodrate.domain.interfaces.InterfaceDaoRecetas
 import com.example.foodrate.domain.models.recetas.Recetas
 

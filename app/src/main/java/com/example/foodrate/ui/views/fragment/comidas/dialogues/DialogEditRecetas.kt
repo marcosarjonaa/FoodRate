@@ -23,11 +23,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
-import com.example.foodrate.data.datasource.recetas.ArgumentsRecetas.ARGUMENT_DESCRIPCION
-import com.example.foodrate.data.datasource.recetas.ArgumentsRecetas.ARGUMENT_ID
-import com.example.foodrate.data.datasource.recetas.ArgumentsRecetas.ARGUMENT_IMAGE
-import com.example.foodrate.data.datasource.recetas.ArgumentsRecetas.ARGUMENT_NAME
-import com.example.foodrate.data.datasource.recetas.ArgumentsRecetas.ARGUMENT_NOTA
+import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_DESCRIPCION
+import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_ID
+import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_IMAGE
+import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_NAME
+import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_NOTA
 import com.example.foodrate.databinding.DialogEditRecetasBinding
 import com.example.foodrate.domain.models.recetas.Recetas
 import java.io.ByteArrayOutputStream
