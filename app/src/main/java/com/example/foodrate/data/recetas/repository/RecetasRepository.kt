@@ -1,7 +1,13 @@
 package com.example.foodrate.data.recetas.repository
 
-import androidx.room.util.copy
-import com.example.foodrate.data.recetas.datasource.recetas.Repositorio
+import android.annotation.SuppressLint
+import android.util.Log
+import android.widget.Toast
+import androidx.annotation.IntegerRes
+import com.example.foodrate.data.recetas.network.models.request.RequestRecetas
+import com.example.foodrate.data.recetas.network.repository.RecetasApiServiceInterface
+import com.example.foodrate.data.recetas.network.service.ApiServiceRecetas
+import com.example.foodrate.domain.Usuarios.models.Usuario
 import com.example.foodrate.domain.interfaces.InterfaceDao
 import com.example.foodrate.domain.models.recetas.Recetas
 import com.example.foodrate.domain.models.recetas.RecetasData
@@ -9,44 +15,124 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RecetasRepository @Inject constructor(): InterfaceDao{
-    
-    override suspend fun getNativeRecetas(): List<Recetas> = Repositorio.ListaRecetas
+class RecetasRepository @Inject constructor(
+    val apiServiceRecetas: ApiServiceRecetas
+): InterfaceDao{
 
-    override suspend fun addReceta(receta: Recetas): Recetas {
-        RecetasData.listaRecetas.recetas.add(receta)
-        return receta
+    @SuppressLint("SuspiciousIdentation")
+    override suspend fun getNativeRecetas(): List<Recetas> {
+        try {
+            val respuesta = apiServiceRecetas.getAllRecetas(Usuario.token.toString())
+            return respuesta.getOrNull()?.map {
+                responseRecetas -> Recetas(
+                    id = responseRecetas.idReceta,
+                    idRecetas = responseRecetas.idReceta,
+                    name = responseRecetas.name,
+                    description = responseRecetas.description,
+                    nota = responseRecetas.nota,
+                    image = responseRecetas.image
+                )
+            } ?: return emptyList()
+        }catch (e: Exception){
+            return emptyList()
+        }
     }
 
-    override suspend fun updateReceta(id: String, receta: Recetas): Boolean {
-        return if (Integer.parseInt(id) < RecetasData.listaRecetas.recetas.size){
-            RecetasData.listaRecetas.recetas[Integer.parseInt(id)] = RecetasData.listaRecetas.recetas.get(Integer.parseInt(id)).copy(
-                id = receta.id,
+    override suspend fun addReceta(receta: Recetas): Recetas? {
+        try {
+            val requestRecetas = RequestRecetas(
+                idReceta = receta.idRecetas,
                 name = receta.name,
-                descripcion = receta.descripcion,
+                description = receta.description,
                 nota = receta.nota,
                 image = receta.image
             )
-            true
+
+            val respuesta = apiServiceRecetas.postRecetas(Usuario.token.toString(), requestRecetas)
+
+            if (respuesta.isSuccess){
+                respuesta.getOrNull()?.let { responseRecetas ->
+                    val newReceta = Recetas(
+                        id = responseRecetas.idReceta,
+                        idRecetas = responseRecetas.idReceta,
+                        name = responseRecetas.name,
+                        description = responseRecetas.description,
+                        nota = responseRecetas.nota,
+                        image =  responseRecetas.image
+                    )
+
+                    RecetasData.listaRecetas.recetas.add(newReceta)
+                    return receta
+                }
+            }else {
+                return null
+            }
+            return null
+        } catch (e: Exception){
+            return null
         }
-        else
-            false
     }
 
-    override suspend fun delReceta(id: String): Boolean {
-        return if(Integer.parseInt(id) < RecetasData.listaRecetas.recetas.size){
-            RecetasData.listaRecetas.recetas.removeAt(Integer.parseInt(id))
-            true
+    override suspend fun updateReceta(id: Int, receta: Recetas): Boolean {
+        try {
+            val requestRecetas = RequestRecetas(
+                idReceta = receta.idRecetas,
+                name = receta.name,
+                description = receta.description,
+                nota = receta.nota,
+                image = receta.image
+            )
+            var recetaId = getNativeRecetas()[id].idRecetas
+            val respuesta = apiServiceRecetas.patchRecetas(Usuario.token.toString(), recetaId, requestRecetas)
+
+            if (respuesta.isSuccess){
+                respuesta.getOrNull()?.let { responseRecetas ->
+                    Recetas(
+                        id = responseRecetas.idReceta,
+                        idRecetas = responseRecetas.idReceta,
+                        name = responseRecetas.name,
+                        description = responseRecetas.description,
+                        nota = responseRecetas.nota,
+                        image =  responseRecetas.image
+                    )
+
+                    val receta = getNativeRecetas().toMutableList()
+                    if (id in receta.indices){
+                        receta[id].idRecetas
+                        return true
+                    } else {
+                        return false
+                    }
+                } ?: return false
+            } else {
+                Log.e("Error Receta Actualizar ", "fallo en api")
+                return false
+            }
+        }catch (e: Exception){
+            Log.e("Error Receta Actualizar", "Excepcion recetas actualizar")
+            return false
         }
-        else
-            false
     }
 
-    override suspend fun getRecetaById(id: String): Recetas? {
+    override suspend fun delReceta(id: Int): Boolean {
+        try {
+            var idRecetas = getNativeRecetas()[id].idRecetas
+            val respuesta = apiServiceRecetas.deleteRecetas(Usuario.token.toString(), idRecetas)
+            if (respuesta.isSuccess){
+                return true
+            } else {
+                return false
+            }
+        }catch (e: Exception){
+            return false
+        }
+    }
+
+    override suspend fun getRecetaById(id: Int): Recetas? {
         return RecetasData.listaRecetas.recetas.firstOrNull { r -> r.id == id }
     }
 
-    override suspend fun existReceta(id: String): Boolean {
+    override suspend fun existReceta(id: Int): Boolean {
         return RecetasData.listaRecetas.recetas.any { r -> r.id == id }
     }
 

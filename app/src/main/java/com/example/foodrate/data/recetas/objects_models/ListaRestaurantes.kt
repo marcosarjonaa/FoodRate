@@ -1,9 +1,9 @@
-package com.example.foodrate.data.recetas.datasource.restaurantes
+package com.example.foodrate.data.recetas.objects_models
 
 import com.example.foodrate.domain.models.restaurantes.Restaurantes
 
-object RestaurantesLista {
-    var ListaRestaurantes : List<Restaurantes> = listOf(
+class ListaRestaurantes {
+    var listaRestaurantes : List<Restaurantes> = listOf(
         Restaurantes(
             "Las tres culturas",
             "Lucena, c/Heredia, 2",

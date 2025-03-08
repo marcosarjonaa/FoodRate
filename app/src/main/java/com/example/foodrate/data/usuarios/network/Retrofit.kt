@@ -1,5 +1,6 @@
 package com.example.foodrate.data.usuarios.network
 
+import com.example.foodrate.data.recetas.network.repository.RecetasApiServiceInterface
 import com.example.foodrate.data.usuarios.network.Interfaces.UsuariosApiServiceInterface
 import dagger.Module
 import dagger.Provides
@@ -31,6 +32,6 @@ object Retrofit {
 
     @Provides
     fun provideRecetasApiServiceInterface(retrofit: Retrofit): RecetasApiServiceInterface {
-
+        return retrofit.create(RecetasApiServiceInterface::class.java)
     }
 }

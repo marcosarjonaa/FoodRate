@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UpdateRecetaUseCase @Inject constructor(
     val recetasRepository: RecetasRepository
 ) {
-    suspend operator fun invoke(id: String, receta: Recetas): Boolean{
+    suspend operator fun invoke(id: Int, receta: Recetas): Boolean{
         if (recetasRepository.existReceta(id)){
             return recetasRepository.updateReceta(id, receta);
         }

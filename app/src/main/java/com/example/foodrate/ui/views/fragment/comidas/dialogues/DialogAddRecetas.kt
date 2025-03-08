@@ -164,8 +164,9 @@ class DialogAddRecetas(
 
     private fun recoverDataLayout(): Recetas {
         return Recetas(
+            binding.etId.text.toString().toIntOrNull() ?: 0,
+            binding.etId.text.toString().toIntOrNull() ?: 0,
             binding.etName.text.toString(),
-            binding.etId.text.toString(),
             binding.etDescripcion.text.toString(),
             binding.etNota.text.toString(),
             imageUri?.toString() ?: ""
@@ -174,8 +175,7 @@ class DialogAddRecetas(
 
     private fun validacion(receta: Recetas): Boolean {
         return receta.name.isNotEmpty() &&
-                receta.id.isNotEmpty() &&
-                receta.descripcion.isNotEmpty() &&
+                receta.description.isNotEmpty() &&
                 receta.nota.isNotEmpty() &&
                 receta.image.isNotEmpty()
     }
