@@ -88,7 +88,7 @@ class FragmentComidas() : Fragment() {
     fun eliminarReceta(posicion: Int){
         if (posicion in adapterRecetas.listRecetas.indices){
             val dialogo = DialogDeleteRecetas(posicion){
-                recetasViewModel.deleteReceta(posicion.toString())
+                recetasViewModel.deleteReceta(posicion)
             }
             dialogo.show(requireActivity().supportFragmentManager, "Queremos eliminar")
         }else {

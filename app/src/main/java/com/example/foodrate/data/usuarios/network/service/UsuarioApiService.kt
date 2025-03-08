@@ -30,7 +30,7 @@ class UsuarioApiService @Inject constructor(
         }
     }
 
-    suspend fun register(registerUsuario: RequestRegisterUsuario): Result<ResponseRegisterUsuario>{
+        suspend fun register(registerUsuario: RequestRegisterUsuario): Result<ResponseRegisterUsuario>{
         try {
             val respuesta = apiService.register(registerUsuario)
             if (respuesta.isSuccessful){

@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodrate.data.recetas.objects_models.ListaRestaurantes
 import com.example.foodrate.ui.views.fragment.Restaurantes.adapter.AdapterRestaurantes
 import com.example.foodrate.databinding.FragmentRestaurantesBinding
 import com.example.foodrate.domain.models.restaurantes.Restaurantes
-import com.example.foodrate.domain.models.restaurantes.RestaurantesData
 
 class FragmentRestaurantes : Fragment() {
     lateinit var binding: FragmentRestaurantesBinding
@@ -27,7 +27,7 @@ class FragmentRestaurantes : Fragment() {
     }
 
     fun initData(){
-        listRestaurantes = RestaurantesData.listaRestaurantes.toMutableList()
+        listRestaurantes = RestaurantesDAO.myDao.getDataRestaurantes().toMutableList()
         setAdapter()
     }
 

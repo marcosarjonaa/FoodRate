@@ -20,7 +20,7 @@ class ViewHRecetas (
 
     fun renderize(recetas: Recetas, position: Int){
         binding.txtNombre.setText(recetas.name)
-        binding.txtDescripcion.setText(recetas.descripcion)
+        binding.txtDescripcion.setText(recetas.description)
         binding.txtNota.setText(recetas.nota)
         Glide
             .with(itemView.context)

@@ -23,13 +23,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
-import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_DESCRIPCION
-import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_ID
-import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_IMAGE
-import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_NAME
-import com.example.foodrate.data.recetas.datasource.recetas.ArgumentsRecetas.ARGUMENT_NOTA
 import com.example.foodrate.databinding.DialogEditRecetasBinding
+import com.example.foodrate.domain.models.recetas.ArgumentRecetas
 import com.example.foodrate.domain.models.recetas.Recetas
+import com.example.foodrate.domain.models.restaurantes.ArgumentRestaurantes
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -81,11 +78,11 @@ class DialogEditRecetas(
             binding.btnSaveToGallery.setOnClickListener { saveImageToGallery() }
 
             arguments?.let { args ->
-                binding.etName.setText(args.getString(ARGUMENT_NAME))
-                binding.etId.setText(args.getString(ARGUMENT_ID))
-                binding.etdescripcion.setText(args.getString(ARGUMENT_DESCRIPCION))
-                binding.etNota.setText(args.getString(ARGUMENT_NOTA))
-                val imageUriString = args.getString(ARGUMENT_IMAGE)
+                binding.etName.setText(args.getString(ArgumentRecetas.ARGUMENT_NAME))
+                binding.etId.setText(args.getString(ArgumentRecetas.ARGUMENT_ID))
+                binding.etdescripcion.setText(args.getString(ArgumentRecetas.ARGUMENT_DESCRIPTION))
+                binding.etNota.setText(args.getString(ArgumentRecetas.ARGUMENT_NOTA))
+                val imageUriString = args.getString(ArgumentRecetas.ARGUMENT_IMAGE)
                 if (!imageUriString.isNullOrEmpty()) {
                     binding.etImage.setImageURI(Uri.parse(imageUriString))
                     imageUri = Uri.parse(imageUriString)
@@ -97,8 +94,8 @@ class DialogEditRecetas(
                 .setTitle("Editar receta")
                 .setPositiveButton("Aceptar") { _, _ ->
                     val updatedReceta = recoverDataLayout()
-                    if (updatedReceta.name.isEmpty() || updatedReceta.id.isEmpty() ||
-                        updatedReceta.descripcion.isEmpty() || updatedReceta.nota.isEmpty()) {
+                    if (updatedReceta.name.isEmpty() || updatedReceta.id==0 ||
+                        updatedReceta.description.isEmpty() || updatedReceta.nota.isEmpty()) {
                         Toast.makeText(requireContext(), "Algún campo está vacío", Toast.LENGTH_LONG).show()
                     } else {
                         updateRecetasDialog(updatedReceta)
@@ -184,8 +181,9 @@ class DialogEditRecetas(
 
     private fun recoverDataLayout(): Recetas {
         return Recetas(
+            Integer.parseInt(binding.etId.text.toString()),
+            Integer.parseInt(binding.etId.text.toString()),
             binding.etName.text.toString(),
-            binding.etId.text.toString(),
             binding.etdescripcion.text.toString(),
             binding.etNota.text.toString(),
             imageUri?.toString() ?: ""

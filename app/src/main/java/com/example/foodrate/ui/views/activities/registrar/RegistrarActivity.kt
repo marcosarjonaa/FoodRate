@@ -10,131 +10,75 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.foodrate.R
+import com.example.foodrate.data.usuarios.models.request.RequestRegisterUsuario
+import com.example.foodrate.data.usuarios.network.models.request.RequestLoginUsuario
+import com.example.foodrate.data.usuarios.network.service.UsuarioApiService
+import com.example.foodrate.databinding.ActivityRegistrarBinding
 import com.example.foodrate.ui.views.activities.login.LoginActivity
+import com.example.foodrate.ui.views.activities.main.MainActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.auth
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.random.Random
 
+@AndroidEntryPoint
 class RegistrarActivity : AppCompatActivity() {
-    private lateinit var btnRegister: Button
-    private lateinit var btnLastRegister: Button
-    private lateinit var editUser: EditText
-    private lateinit var editPassword: EditText
-    private lateinit var editRepeatPassword: EditText
-    private lateinit var auth: FirebaseAuth
+    private lateinit var registrarBinding : ActivityRegistrarBinding
+
+    @Inject
+    lateinit var usuarioApiService: UsuarioApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_registrar)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        init()
-        start()
-    }
-
-    private fun init() {
-        btnRegister = findViewById(R.id.btn_register_in_register)
-        btnLastRegister = findViewById(R.id.btn_last_register)
-        editUser = findViewById(R.id.edit_user_register)
-        editPassword = findViewById(R.id.edit_pass_register)
-        editRepeatPassword = findViewById(R.id.pass_register_repeat_in_register)
-
-        auth = Firebase.auth
+        registrarBinding = ActivityRegistrarBinding.inflate(layoutInflater)
+        setContentView(registrarBinding.root)
+        registerListeners()
 
     }
 
+    private fun registerListeners(){
+        registrarBinding.btnRegisterInRegister.setOnClickListener {
+            val dni = registrarBinding.editUserRegister.text.toString().trim()
+            val password = registrarBinding.editPassRegister.text.toString().trim()
 
-    private fun start() {
-        btnRegister.setOnClickListener {
-            val email = editUser.text.toString()
-            val pass = editPassword.text.toString()
-            val repeatPass = editRepeatPassword.text.toString()
-            if (pass != repeatPass
-                || email.isEmpty()
-                || pass.isEmpty()
-                || repeatPass.isEmpty()
-            )
-                Toast.makeText(this, "Campos vacíos y/o password diferentes", Toast.LENGTH_LONG)
-                    .show()
-            else {
-                registerUser(email, pass) { result, msg ->
-                    Toast.makeText(this@RegistrarActivity, msg, Toast.LENGTH_LONG).show()
-                    if (result)
-                        startActivityLogin()
-                }
+            if (!dni.isNullOrEmpty() && !password.isNullOrEmpty()){
+                registrarUsuario(dni, password)
+            }else {
+                Toast.makeText(this, "Alguno de los campos está vacio", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnLastRegister.setOnClickListener {
-            // Como la lambda tiene un parámetro view, el this es el Activity
-                view ->
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+        registrarBinding.btnLastRegister.setOnClickListener{
+            val intentLogin = Intent(this, LoginActivity::class.java)
+            startActivity(intentLogin)
             finish()
         }
     }
 
-    private fun startActivityLogin() {
-        //Tengo que lanzar un intent con el Activity a loguear.
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish() //No quiero que sigua el Activity del registro.
+    private fun registrarUsuario(dni: String, password: String ) {
+        val requestRegisterUsuario = RequestRegisterUsuario(dni, "marcos@gmail.com", password, "morco", "")
 
-    }
-
-    private fun registerUser(email: String, pass: String, onResult: (Boolean, String) -> Unit) {
-        auth.createUserWithEmailAndPassword(email, pass)
-            .addOnCompleteListener(this) { taskAssin ->
-                if (taskAssin.isSuccessful) {
-                    //enviaremos un email de confirmación
-                    val user = auth.currentUser
-                    user?.sendEmailVerification()
-                        ?.addOnCompleteListener { taskVerification ->
-                            var msg = ""
-                            if (taskVerification.isSuccessful)
-                                msg = "Usuario Registrado Ok. Verifique su correo"
-                            else
-                                msg =
-                                    "Usuario Registrado Ok. ${taskVerification.exception?.message}"
-                            auth.signOut() //tiene que verificar antes el email
-                            onResult(true, msg)
-                        }
-                        ?.addOnFailureListener { exception ->
-                            Log.e(
-                                "ActivityRegister",
-                                "Fallo al enviar correo de verificación: ${exception.message}"
-                            )
-                            onResult(
-                                false,
-                                "No se pudo enviar el correo de verificación: ${exception.message}"
-                            )
-                        }
-
-                } else {
-                    try {
-                        throw taskAssin.exception ?: Exception("Error desconocido")
-                    } catch (e: FirebaseAuthUserCollisionException) {
-                        onResult(false, "Ese usuario ya existe")
-                    } catch (e: FirebaseAuthWeakPasswordException) {
-                        onResult(false, "La contraseña es débil: ${e.reason}")
-                    } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        onResult(false, "El email proporcionado, no es válido")
-                    } catch (e: Exception) {
-                        onResult(false, e.message.toString())
-                    }
-
-                }
+        lifecycleScope.launch {
+            val resultado = usuarioApiService.register(requestRegisterUsuario)
+            resultado.fold(
+            onSuccess = { respuesta ->
+                Toast.makeText(this@RegistrarActivity, "Te has registrado", Toast.LENGTH_SHORT).show()
+                val intentMain = Intent(this@RegistrarActivity, LoginActivity::class.java)
+                startActivity(intentMain)
+            },
+            onFailure = { fallo ->
+                val mensajeError = fallo.message ?: "Fallo en el registro"
+                Toast.makeText(this@RegistrarActivity, "El error es: $mensajeError", Toast.LENGTH_SHORT).show()
             }
-
-
+            )
+        }
     }
 }

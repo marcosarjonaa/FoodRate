@@ -28,7 +28,7 @@ class FragmentDetalles : Fragment() {
         val recetas = RecetasDAO.recetasdao.getDataRecetas()[idItem]
 
         binding.nombre.text = recetas.name
-        binding.description.text = recetas.descripcion
+        binding.description.text = recetas.description
         Glide.with(this)
             .load(recetas.image)
             .centerCrop()

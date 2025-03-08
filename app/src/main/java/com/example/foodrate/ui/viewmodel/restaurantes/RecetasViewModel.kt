@@ -57,25 +57,25 @@ class RecetasViewModel @Inject constructor(
         }
     }
 
-    fun updateRecetas(id: String, receta: Recetas) {
+    fun updateRecetas(id: Int, receta: Recetas) {
         viewModelScope.launch(Dispatchers.IO) {
             val editada = updateRecetaUseCase(id, receta)
             editada?.let {
                 val listaEditada = recetasLiveData.value?.toMutableList() ?: mutableListOf()
                 val index = listaEditada.indexOfFirst { it.id== id }
                 if (index!=-1){
-                    listaEditada[Integer.parseInt(id)] = receta
+                    listaEditada[id] = receta
                     recetasLiveData.postValue(listaEditada)
                 }
             }
         }
     }
 
-    fun deleteReceta(id: String){
+    fun deleteReceta(id: Int){
         viewModelScope.launch(Dispatchers.IO) {
             val result = deleteRecetaUseCase(id)
             result?.let {
-                posicionDeleteRecetaLiveData.postValue(Integer.parseInt(id))
+                posicionDeleteRecetaLiveData.postValue(id)
             }
         }
     }
